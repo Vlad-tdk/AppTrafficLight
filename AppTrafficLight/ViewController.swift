@@ -20,11 +20,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        redLightView.alpha = colorAlfaOff
+        yellowLightView.alpha = colorAlfaOff
+        greenLightView.alpha = colorAlfaOff
+        swithLightButtonn.layer.cornerRadius = 10
+        
+        redLightView.layer.cornerRadius = redLightView.frame.width / 2
+        yellowLightView.layer.cornerRadius = yellowLightView.frame.width / 2
+        greenLightView.layer.cornerRadius = redLightView.frame.width / 2
+        print(redLightView.frame.width)
         
     }
 
 
     @IBAction func tappedLightButton() {
+        redLightView.alpha = CGFloat(colorAlfaOn)
     }
+    
+    
 }
 
