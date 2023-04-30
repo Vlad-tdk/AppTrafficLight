@@ -7,36 +7,58 @@
 
 import UIKit
 
+enum lightNow {
+    case red, yellow, green
+}
+
 class ViewController: UIViewController {
     
     @IBOutlet var redLightView: UIView!
     @IBOutlet var yellowLightView: UIView!
     @IBOutlet var greenLightView: UIView!
     
-    @IBOutlet var swithLightButtonn: UIButton!
+    @IBOutlet var swithLightButton: UIButton!
     
-    private let colorAlfaOn = 1
-    private let colorAlfaOff = 0.1
+    private var ligftNow = lightNow.red
+    private let colorAlfaOn: CGFloat = 1
+    private let colorAlfaOff: CGFloat = 0.1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         redLightView.alpha = colorAlfaOff
         yellowLightView.alpha = colorAlfaOff
         greenLightView.alpha = colorAlfaOff
-        swithLightButtonn.layer.cornerRadius = 10
         
+        swithLightButton.layer.cornerRadius = 10
+    }
+    
+    /* viewWillLayoutSubviews загружается раньше чем viewDidLoad В viewWillLayoutSubviews методе размеры корректные, а view размещены правильно — можно подвязываться к размерам корневой view.*/
+    
+    override func viewWillLayoutSubviews() {
         redLightView.layer.cornerRadius = redLightView.frame.width / 2
         yellowLightView.layer.cornerRadius = yellowLightView.frame.width / 2
         greenLightView.layer.cornerRadius = redLightView.frame.width / 2
-        print(redLightView.frame.width)
         
     }
-
-
-    @IBAction func tappedLightButton() {
-        redLightView.alpha = CGFloat(colorAlfaOn)
+    
+    
+    @IBAction func tappedSwitchLightButton() {
+            swithLightButton.setTitle("NEXT", for: .normal)
+        
+        switch ligftNow {
+        case .red:
+            redLightView.alpha = colorAlfaOn
+            greenLightView.alpha = colorAlfaOff
+            ligftNow = .yellow
+        case .yellow:
+            yellowLightView.alpha = colorAlfaOn
+            redLightView.alpha = colorAlfaOff
+            ligftNow = .green
+        case .green:
+            greenLightView.alpha = colorAlfaOn
+            yellowLightView.alpha = colorAlfaOff
+            ligftNow = .red
+        }
     }
-    
-    
 }
 
