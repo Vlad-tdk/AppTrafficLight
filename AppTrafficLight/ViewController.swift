@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         swithLightButton.layer.cornerRadius = 10
     }
     
-    /* viewWillLayoutSubviews загружается раньше чем viewDidLoad В viewWillLayoutSubviews методе размеры корректные, а view размещены правильно — можно подвязываться к размерам корневой view.*/
+    /* viewWillLayoutSubviews загружается раньше чем viewDidLoad В viewWillLayoutSubviews методе размеры корректные, а view размещены правильно — можно подвязываться к размерам корневой view. подробнее тут: https://sparrowcode.io/ru/tutorials/uiviewcontroller-lifecycle */
     
     override func viewWillLayoutSubviews() {
         redLightView.layer.cornerRadius = redLightView.frame.width / 2
